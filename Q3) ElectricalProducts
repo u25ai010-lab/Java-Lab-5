@@ -1,0 +1,74 @@
+import javax.xml.crypto.KeySelectorResult;
+import java.util.Scanner;
+class Product{
+    String ProductID;
+    String Name;
+    String CategoryID;
+    int UnitPrice;
+
+    Product(String ProductID, String Name , String CategoryID , int UnitPrice)
+    {
+        this.ProductID = ProductID;
+        this.Name = Name;
+        this.CategoryID = CategoryID;
+        this.UnitPrice = UnitPrice;
+    }
+
+
+}
+
+class ElectricalProducts extends Product
+{
+    double Wattage , Voltage;
+    ElectricalProducts(String ProductID, String Name , String CategoryID , int UnitPrice , double Wattage,double Voltage)
+    {
+        super(ProductID,Name,CategoryID,UnitPrice);
+        this.Wattage = Wattage;
+        this.Voltage = Voltage;
+
+    }
+
+    void update(double newWattage, int newPrice) {
+        Wattage = newWattage;
+        UnitPrice = newPrice;
+    }
+    void display() {
+        System.out.println("\n--- Updated Electrical Product Details ---");
+        System.out.println("Product ID: " + ProductID);
+        System.out.println("Name: " + Name);
+        System.out.println("Category ID: " + CategoryID);
+        System.out.println("Unit Price: " + UnitPrice);
+        System.out.println("Wattage: " + Wattage);
+        System.out.println("Voltage Range: " + Voltage);
+    }
+
+}
+
+public class Shopee {
+    public static void main(String []args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter ProductID : ");
+        String ProductID = scanner.next();
+        System.out.println("Enter Name : ");
+        String Name = scanner.next();
+        System.out.println("Enter CategoryID : ");
+        String CategoryID = scanner.next();
+        System.out.println("Enter Unit Price : ");
+        int UnitPrice = scanner.nextInt();
+        System.out.println("Enter Wattage : ");
+        double Wattage = scanner.nextDouble();
+        System.out.println("Enter Voltage Range : ");
+        double Voltage = scanner.nextDouble();
+
+        System.out.print("\nEnter new Wattage: ");
+        double newWatt = scanner.nextDouble();
+
+        System.out.print("Enter new Price: ");
+        int newPrice = scanner.nextInt();
+
+        ElectricalProducts electricalProducts = new ElectricalProducts(ProductID, Name, CategoryID, UnitPrice, Wattage, Voltage);
+        electricalProducts.update(newWatt, newPrice);
+
+        electricalProducts.display();
+    }
+}
